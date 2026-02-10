@@ -30,3 +30,24 @@ function kirim() {
 function kembaliHome() {
   location.reload();
 }
+document.getElementById("laporForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const kategori = document.getElementById("kategori").value;
+  const isi = document.getElementById("isiLaporan").value;
+
+  const laporan = {
+    kategori: kategori,
+    isi: isi,
+    tanggal: new Date().toLocaleString()
+  };
+
+  let dataLaporan = JSON.parse(localStorage.getItem("laporan")) || [];
+  dataLaporan.push(laporan);
+  localStorage.setItem("laporan", JSON.stringify(dataLaporan));
+
+  alert("Laporan Anda telah kami terima ✅");
+
+  this.reset();
+  backMenu();
+});
