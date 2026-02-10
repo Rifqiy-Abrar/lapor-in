@@ -13,20 +13,6 @@ function backMenu() {
   document.getElementById("menu").classList.remove("hidden");
 }
 
-function kirim() {
-  let kategori = document.getElementById("kategori").value;
-  let judul = document.getElementById("judul").value;
-  let isi = document.getElementById("isi").value;
-
-  if (!kategori || !judul || !isi) {
-    alert("Harap isi semua data.");
-    return;
-  }
-
-  document.getElementById("form").classList.add("hidden");
-  document.getElementById("konfirmasi").classList.remove("hidden");
-}
-
 function kembaliHome() {
   location.reload();
 }
