@@ -55,21 +55,32 @@
 
 <!-- FORM -->
 <section id="form" class="hidden">
-  <h2>Form Laporan Anonim</h2>
+  <h2>Kirim Laporan Anonim</h2>
 
-  <select id="kategori">
-    <option value="">Pilih Kategori</option>
-    <option>Fasilitas</option>
-    <option>Sistem</option>
-    <option>Lingkungan</option>
-    <option>Sosial</option>
-  </select>
+  <form id="laporForm">
 
-  <input type="text" id="judul" placeholder="Judul Laporan">
+    <label>Kategori Laporan</label><br><br>
+    <select id="kategori" required>
+      <option value="">-- Pilih Kategori --</option>
+      <option value="Fasilitas">Fasilitas</option>
+      <option value="Sistem">Sistem</option>
+      <option value="Lingkungan">Lingkungan</option>
+      <option value="Sosial">Sosial</option>
+      <option value="Lainnya">Lainnya</option>
+    </select>
 
-  <textarea id="isi" placeholder="Tulis laporan kamu di sini..."></textarea>
+    <br><br>
 
-  <button onclick="kirim()">Kirim Laporan</button>
+    <label>Isi Laporan</label><br><br>
+    <textarea id="isiLaporan" rows="5" placeholder="Tulis laporan kamu dengan jelas dan sopan..." required></textarea>
+
+    <br><br>
+
+    <button type="submit">Kirim Laporan</button>
+    <br><br>
+    <button type="button" onclick="backMenu()">Kembali</button>
+
+  </form>
 </section>
 
 <!-- KONFIRMASI -->
