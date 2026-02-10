@@ -1,11 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+  <meta charset="UTF-8">
   <title>Lapor.in</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Selamat Datang di Lapor.in</h1>
-  <p>Platform laporan anonim untuk siswa</p>
-  <button>Mulai</button>
+
+<!-- WELCOME SECTION -->
+<section id="welcome">
+  <h1>Lapor.in</h1>
+  <p>Tempat Aman untuk Menyampaikan Laporan & Aspirasi</p>
+  <button onclick="masuk()">Mulai Sekarang</button>
+</section>
+
+<!-- MENU SECTION -->
+<section id="menu" class="hidden">
+  <h2>Pilih Menu</h2>
+  <div class="cards">
+    <div class="card" onclick="showSection('tentang')">
+      <h3>Apa itu Lapor.in?</h3>
+      <p>Platform independen untuk laporan anonim siswa.</p>
+    </div>
+
+    <div class="card" onclick="showSection('panduan')">
+      <h3>Cara Menggunakan</h3>
+      <p>Panduan menulis laporan yang baik dan benar.</p>
+    </div>
+
+    <div class="card highlight" onclick="showSection('form')">
+      <h3>Kirim Laporan</h3>
+      <p>Sampaikan laporan secara anonim.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TENTANG -->
+<section id="tentang" class="hidden">
+  <h2>Tentang Lapor.in</h2>
+  <p>Lapor.in adalah platform independen yang memungkinkan siswa menyampaikan kritik dan aspirasi secara anonim dan aman.</p>
+  <button onclick="backMenu()">Kembali</button>
+</section>
+
+<!-- PANDUAN -->
+<section id="panduan" class="hidden">
+  <h2>Panduan Menulis Laporan</h2>
+  <ul>
+    <li>Gunakan bahasa yang sopan.</li>
+    <li>Jelaskan masalah secara jelas.</li>
+    <li>Hindari menyerang individu.</li>
+  </ul>
+  <button onclick="backMenu()">Kembali</button>
+</section>
+
+<!-- FORM -->
+<section id="form" class="hidden">
+  <h2>Form Laporan Anonim</h2>
+
+  <select id="kategori">
+    <option value="">Pilih Kategori</option>
+    <option>Fasilitas</option>
+    <option>Sistem</option>
+    <option>Lingkungan</option>
+    <option>Sosial</option>
+  </select>
+
+  <input type="text" id="judul" placeholder="Judul Laporan">
+
+  <textarea id="isi" placeholder="Tulis laporan kamu di sini..."></textarea>
+
+  <button onclick="kirim()">Kirim Laporan</button>
+</section>
+
+<!-- KONFIRMASI -->
+<section id="konfirmasi" class="hidden">
+  <h2>Laporan Anda Telah Kami Terima</h2>
+  <p>Terima kasih atas partisipasi Anda.</p>
+  <button onclick="kembaliHome()">Kembali ke Beranda</button>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
+
