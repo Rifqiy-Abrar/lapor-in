@@ -117,3 +117,6 @@ form {
 .hidden {
   display: none;
 }
+.logo-inline {
+    height: 80px;
+}
