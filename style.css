@@ -119,18 +119,4 @@ form {
 }
 .logo-inline {
     height: 80px;
-}
-.welcome-title {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: all 0.8s ease;
-}
-
-.welcome-title.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.welcome-title.hide {
-  opacity: 0;
-  transform: translateY(20px);
+  
