@@ -37,3 +37,14 @@ document.getElementById("laporForm").addEventListener("submit", function(e) {
   this.reset();
   backMenu();
 });
+const welcomeText = document.getElementById('welcomeText');
+const toggleBtn = document.getElementById('toggleBtn');
+
+window.onload = () => {
+  welcomeText.classList.add('show');
+};
+
+toggleBtn.addEventListener('click', () => {
+  welcomeText.classList.remove('show');
+  welcomeText.classList.add('hide');
+});
