@@ -1,7 +1,17 @@
 function masuk() {
-  document.getElementById("welcome").classList.add("hidden");
-  document.getElementById("menu").classList.remove("hidden");
+  const welcomeText = document.getElementById("welcomeText");
+  
+  // jalankan animasi keluar
+  welcomeText.classList.remove("show");
+  welcomeText.classList.add("hide");
+
+  // tunggu animasi selesai (0.8s sesuai CSS), baru pindah section
+  setTimeout(() => {
+    document.getElementById("welcome").classList.add("hidden");
+    document.getElementById("menu").classList.remove("hidden");
+  }, 800);
 }
+
 
 function showSection(id) {
   document.getElementById("menu").classList.add("hidden");
