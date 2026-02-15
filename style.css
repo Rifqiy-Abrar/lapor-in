@@ -134,7 +134,3 @@ form {
 .welcome-title.hide {
   opacity: 0;
   transform: translateY(20px);
-}
-.hidden {
-  display: none;
-}
