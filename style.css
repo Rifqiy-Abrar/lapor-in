@@ -263,3 +263,32 @@ form {
 .content-section {
     transition: opacity 0.3s ease;
 }
+select, textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 5px;
+}
+
+button[type="submit"] {
+    background: linear-gradient(to right, #1ECAD3, #0B2A4A);
+    color: white;
+}
+
+button[type="button"] {
+    background: #ddd;
+}
