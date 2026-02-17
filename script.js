@@ -11,10 +11,33 @@ function masuk() {
     menu.classList.remove("hidden");
 }
 
+<script>
 function showSection(id) {
-  document.getElementById("menu").classList.add("hidden");
-  document.getElementById(id).classList.remove("hidden");
+
+    // sembunyikan semua content
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+
+    // sembunyikan menu
+    document.getElementById('menu').classList.add('hidden');
+
+    // tampilkan yang dipilih
+    document.getElementById(id).classList.remove('hidden');
 }
+
+function showMenu() {
+
+    // sembunyikan semua content
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+
+    // tampilkan menu kembali
+    document.getElementById('menu').classList.remove('hidden');
+}
+</script>
+
 
 function backMenu() {
   document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
