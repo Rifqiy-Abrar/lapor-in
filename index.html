@@ -126,6 +126,26 @@ function masuk() {
   document.getElementById("menu").style.display = "block";
 }
 </script>
+    <script>
+function showSection(id) {
+
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+
+    document.getElementById('menu').classList.add('hidden');
+    document.getElementById(id).classList.remove('hidden');
+}
+
+function showMenu() {
+
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+
+    document.getElementById('menu').classList.remove('hidden');
+}
+</script>
 <script src="script.js"></script>
 </body>
 </html>
