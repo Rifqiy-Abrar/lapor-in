@@ -301,3 +301,47 @@ button[type="button"] {
   font-weight: 700;
   margin-bottom: 60px;
 }
+.content-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  text-align: left; /* label tetap rapi */
+}
+
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+.form-wrapper {
+  text-align: center;
+}
+
+.form-group {
+  text-align: center;
+}
