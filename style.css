@@ -238,3 +238,28 @@ form {
     background: linear-gradient(to right, #1ECAD3, #0B2A4A);
     border-radius: 10px;
 }
+.hidden {
+    display: none;
+}
+
+.content-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f8fc;
+    padding: 20px;
+}
+
+.content-box {
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    width: 600px;
+    max-width: 90%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.content-section {
+    transition: opacity 0.3s ease;
+}
