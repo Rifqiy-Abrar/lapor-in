@@ -188,11 +188,11 @@ form {
 }
     
 .section-title {
-    text-align: center;
     font-size: 32px;
     margin-bottom: 60px;
     color: #0B2A4A;
 }
+
     
 .card {
     background: white;
@@ -217,4 +217,24 @@ form {
         opacity: 1;
         transform: translateY(0);
     }
+}
+#menu {
+    width: 100%;
+    padding: 80px 20px;
+    text-align: center;
+}
+.card {
+    position: relative;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 5px;
+    background: linear-gradient(to right, #1ECAD3, #0B2A4A);
+    border-radius: 10px;
 }
