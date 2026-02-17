@@ -54,52 +54,59 @@
 </section>
 
 <!-- TENTANG -->
-<section id="tentang" class="hidden">
-  <h2>Tentang Lapor.in</h2>
-  <p>Lapor.in adalah platform independen yang memungkinkan siswa menyampaikan kritik dan aspirasi secara anonim dan aman.</p>
-  <button onclick="backMenu()">Kembali</button>
+<section id="tentang" class="content-section hidden">
+    <div class="content-box">
+        <h2>Tentang Lapor.in</h2>
+        <p>Lapor.in adalah platform independen...</p>
+        <button onclick="showMenu()">Kembali</button>
+    </div>
 </section>
 
 <!-- PANDUAN -->
-<section id="panduan" class="hidden">
-  <h2>Panduan Menulis Laporan</h2>
-  <ul>
-    <li>Gunakan bahasa yang sopan.</li>
-    <li>Jelaskan masalah secara jelas.</li>
-    <li>Hindari menyerang individu.</li>
-  </ul>
-  <button onclick="backMenu()">Kembali</button>
+<section id="panduan" class="content-section hidden">
+    <div class="content-box">
+        <h2>Panduan Menulis Laporan</h2>
+        <ul>
+            <li>Gunakan bahasa yang sopan.</li>
+            <li>Jelaskan masalah secara jelas.</li>
+            <li>Hindari menyerang individu.</li>
+        </ul>
+        <button onclick="showMenu()">Kembali</button>
+    </div>
 </section>
 
 <!-- FORM -->
-<section id="form" class="hidden">
-  <h2>Kirim Laporan Anonim</h2>
+<section id="form" class="content-section hidden">
+    <div class="content-box">
+        <h2>Kirim Laporan Anonim</h2>
 
-  <form id="laporForm">
+        <form id="laporForm">
 
-    <label>Kategori Laporan</label><br><br>
-    <select id="kategori" required>
-      <option value="">-- Pilih Kategori --</option>
-      <option value="Fasilitas">Fasilitas</option>
-      <option value="Sistem">Sistem</option>
-      <option value="Lingkungan">Lingkungan</option>
-      <option value="Sosial">Sosial</option>
-      <option value="Lainnya">Lainnya</option>
-    </select>
+            <label>Kategori Laporan</label><br><br>
 
-    <br><br>
+            <select id="kategori" required>
+                <option value="">-- Pilih Kategori --</option>
+                <option value="Fasilitas">Fasilitas</option>
+                <option value="Sistem">Sistem</option>
+                <option value="Lingkungan">Lingkungan</option>
+                <option value="Sosial">Sosial</option>
+                <option value="Lainnya">Lainnya</option>
+            </select>
 
-    <label>Isi Laporan</label><br><br>
-    <textarea id="isiLaporan" rows="5" placeholder="Tulis laporan kamu dengan jelas dan sopan..." required></textarea>
+            <br><br>
 
-    <br><br>
+            <label>Isi Laporan</label><br><br>
+            <textarea rows="5" required></textarea>
 
-    <button type="submit">Kirim Laporan</button>
-    <br><br>
-    <button type="button" onclick="backMenu()">Kembali</button>
+            <br><br>
 
-  </form>
+            <button type="submit">Kirim</button>
+            <button type="button" onclick="showMenu()">Kembali</button>
+
+        </form>
+    </div>
 </section>
+
 
 <!-- KONFIRMASI -->
 <section id="konfirmasi" class="hidden">
