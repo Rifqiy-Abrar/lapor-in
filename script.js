@@ -7,7 +7,7 @@ function masuk() {
 
   // tunggu animasi selesai (0.8s sesuai CSS), baru pindah section
   setTimeout(() => {
-    document.getElementById("welcome").classList.add("hidden");
+    document.getElementById("welcomeText").classList.add("hidden");
     document.getElementById("menu").classList.remove("hidden");
   }, 800);
 }
