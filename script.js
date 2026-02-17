@@ -10,8 +10,6 @@ function masuk() {
     welcome.classList.add("hidden");
     menu.classList.remove("hidden");
 }
-
-<script>
 function showSection(id) {
 
     // sembunyikan semua content
@@ -36,9 +34,6 @@ function showMenu() {
     // tampilkan menu kembali
     document.getElementById('menu').classList.remove('hidden');
 }
-</script>
-
-
 function backMenu() {
   document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
   document.getElementById("menu").classList.remove("hidden");
