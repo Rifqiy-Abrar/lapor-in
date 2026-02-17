@@ -76,36 +76,34 @@
 </section>
 
 <!-- FORM -->
-<section id="form" class="content-section hidden">
-    <div class="content-box">
-        <h2>Kirim Laporan Anonim</h2>
+<section id="kirimLaporan" class="content-section hidden">
+  <div class="form-wrapper">
+      <h2>Kirim Laporan Anonim</h2>
 
-        <form id="laporForm">
-
-            <label>Kategori Laporan</label><br><br>
-
-            <select id="kategori" required>
-                <option value="">-- Pilih Kategori --</option>
+      <div class="form-group">
+          <label>Kategori Laporan</label>
+          <select>
+              <option value="">-- Pilih Kategori --</option>
                 <option value="Fasilitas">Fasilitas</option>
                 <option value="Sistem">Sistem</option>
                 <option value="Lingkungan">Lingkungan</option>
                 <option value="Sosial">Sosial</option>
                 <option value="Lainnya">Lainnya</option>
-            </select>
+          </select>
+      </div>
 
-            <br><br>
+      <div class="form-group">
+          <label>Isi Laporan</label>
+          <textarea></textarea>
+      </div>
 
-            <label>Isi Laporan</label><br><br>
-            <textarea rows="5" required></textarea>
-
-            <br><br>
-
-            <button type="submit">Kirim</button>
-            <button type="button" onclick="showMenu()">Kembali</button>
-
-        </form>
-    </div>
+      <div class="button-group">
+          <button>Kirim</button>
+          <button onclick="showMenu()">Kembali</button>
+      </div>
+  </div>
 </section>
+
 
 
 <!-- KONFIRMASI -->
