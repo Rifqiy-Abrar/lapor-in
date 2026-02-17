@@ -4,9 +4,9 @@ body {
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom, #ffffff 0%, #1E3A5F 60%, #0B2A4A 100%);
+    font-family: Arial, sans-serif;
     min-height: 100vh;
+    background: linear-gradient(to bottom, #ffffff 0%, #1E3A5F 60%, #0B2A4A 100%);
 }
 
 section {
@@ -142,4 +142,17 @@ form {
 
 .header-logo {
     height: 80px;
+}
+
+.top-header {
+    width: 100%;
+    height: 150px;
+    background-color: #0B2A4A !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo {
+    height: 90px;
 }
