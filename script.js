@@ -54,14 +54,17 @@ document.getElementById("laporForm").addEventListener("submit", function(e) {
     tanggal: new Date().toLocaleString()
   };
 
+  // simpan ke localStorage
   let dataLaporan = JSON.parse(localStorage.getItem("laporan")) || [];
   dataLaporan.push(laporan);
   localStorage.setItem("laporan", JSON.stringify(dataLaporan));
 
-  alert("Laporan Anda telah kami terima ✅");
+  // tampilkan konfirmasi
+  document.getElementById("kirimLaporan").classList.add("hidden");
+  document.getElementById("konfirmasi").classList.remove("hidden");
 
+  // reset form
   this.reset();
-  backMenu();
 });
 const welcomeText = document.getElementById('welcomeText');
 const toggleBtn = document.getElementById('toggleBtn');
