@@ -345,3 +345,6 @@ textarea {
 .form-group {
   text-align: center;
 }
+.hidden {
+  display: none;
+}
