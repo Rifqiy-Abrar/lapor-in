@@ -77,3 +77,21 @@ toggleBtn.addEventListener('click', () => {
   welcomeText.classList.remove('show');
   welcomeText.classList.add('hide');
 });
+function showSection(id) {
+    console.log("ID yang dipanggil:", id);
+
+    const target = document.getElementById(id);
+    console.log("Element ditemukan:", target);
+
+    if (!target) {
+        alert("Section tidak ditemukan!");
+        return;
+    }
+
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+
+    document.getElementById('menu').classList.add('hidden');
+    target.classList.remove('hidden');
+}
