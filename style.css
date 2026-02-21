@@ -345,6 +345,27 @@ textarea {
 .form-group {
   text-align: center;
 }
+.btn-start {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease; /* animasi transisi */
+}
+
+.btn-start:hover {
+  background: #1e40af;
+  transform: scale(1.05); /* efek membesar sedikit */
+}
+
+.btn-start:active {
+  transform: scale(0.95); /* efek mengecil saat ditekan */
+}
+
 .hidden {
   display: none;
 }
