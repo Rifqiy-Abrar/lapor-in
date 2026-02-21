@@ -7,36 +7,36 @@ function masuk() {
         return;
     }
 
-    welcome.classList.add("hidden");
-    menu.classList.remove("hidden");
+    welcome.classList.add("hidden-center");
+    menu.classList.remove("hidden-center");
 }
 function showSection(id) {
 
     // sembunyikan semua content
     document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.add('hidden');
+        section.classList.add('hidden-center');
     });
 
     // sembunyikan menu
-    document.getElementById('menu').classList.add('hidden');
+    document.getElementById('menu').classList.add('hidden-center');
 
     // tampilkan yang dipilih
-    document.getElementById(id).classList.remove('hidden');
+    document.getElementById(id).classList.remove('hidden-center');
 }
 
 function showMenu() {
 
     // sembunyikan semua content
     document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.add('hidden');
+        section.classList.add('hidden-center');
     });
 
     // tampilkan menu kembali
-    document.getElementById('menu').classList.remove('hidden');
+    document.getElementById('menu').classList.remove('hidden-center');
 }
 function backMenu() {
-  document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
-  document.getElementById("menu").classList.remove("hidden");
+  document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden-center"));
+  document.getElementById("menu").classList.remove("hidden-center");
 }
 
 function kembaliHome() {
@@ -54,8 +54,8 @@ document.getElementById("laporForm").addEventListener("submit", function(e) {
     tanggal: new Date().toLocaleString()
   };
   // tampilkan konfirmasi
-  document.getElementById("kirimLaporan").classList.add("hidden");
-  document.getElementById("konfirmasi").classList.remove("hidden");
+  document.getElementById("kirimLaporan").classList.add("hidden-center");
+  document.getElementById("konfirmasi").classList.remove("hidden-center");
 
   // reset form
   this.reset();
@@ -83,11 +83,11 @@ function showSection(id) {
     }
 
     document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.add('hidden');
+        section.classList.add('hidden-center');
     });
 
-    document.getElementById('menu').classList.add('hidden');
-    target.classList.remove('hidden');
+    document.getElementById('menu').classList.add('hidden-center');
+    target.classList.remove('hidden-center');
 }
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
