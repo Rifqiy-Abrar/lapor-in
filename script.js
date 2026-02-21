@@ -95,3 +95,6 @@ function showSection(id) {
     document.getElementById('menu').classList.add('hidden');
     target.classList.remove('hidden');
 }
+let dataLaporan = JSON.parse(localStorage.getItem("laporan")) || [];
+  dataLaporan.push(laporan);
+  localStorage.setItem("laporan", JSON.stringify(dataLaporan));
