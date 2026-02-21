@@ -46,7 +46,7 @@ document.getElementById("laporForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
   const kategori = document.getElementById("kategori").value;
-  const isi = document.getElementById("isiLaporan").value;
+  const isi = document.getElementById("isilaporan").value;
 
   const laporan = {
     kategori: kategori,
