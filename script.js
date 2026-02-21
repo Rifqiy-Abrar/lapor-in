@@ -89,3 +89,30 @@ function showSection(id) {
     document.getElementById('menu').classList.add('hidden');
     target.classList.remove('hidden');
 }
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const kategoriEl = document.getElementById("kategori");
+  const isiEl = document.getElementById("isilaporan");
+
+  if (!kategoriEl || !isiEl) {
+    alert("ID tidak ditemukan! Cek HTML.");
+    return;
+  }
+
+  const kategori = kategoriEl.value;
+  const isi = isiEl.value;
+
+  try {
+    await addDoc(collection(db, "laporan"), {
+      kategori,
+      isi,
+      tanggal: new Date()
+    });
+
+    alert("Laporan berhasil dikirim!");
+    form.reset();
+  } catch (error) {
+    console.error(error);
+  }
+});
