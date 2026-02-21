@@ -369,3 +369,11 @@ textarea {
 .hidden {
   display: none;
 }
+section {
+  display: flex;
+  flex-direction: column;   /* susun elemen ke bawah */
+  justify-content: center;  /* vertikal tengah */
+  align-items: center;      /* horizontal tengah */
+  min-height: 100vh;        /* penuh tinggi layar */
+  text-align: center;       /* teks rata tengah */
+}
