@@ -18,7 +18,7 @@ function showSection(id) {
     });
 
     // sembunyikan menu
-    document.getElementById('menu').classList.add('hidden');
+    document.getElementById(id)('menu').classList.add('hidden');
 
     // tampilkan yang dipilih
     document.getElementById(id).classList.remove('hidden');
