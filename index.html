@@ -139,6 +139,45 @@ function showMenu() {
     document.getElementById('menu').classList.remove('hidden');
 }
 </script>
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB-6HSzNSOtX6712oy5FLZeJapmMoznqSU",
+    authDomain: "lapor-in-177c1.firebaseapp.com",
+    projectId: "lapor-in-177c1",
+    storageBucket: "lapor-in-177c1.firebasestorage.app",
+    messagingSenderId: "865694055211",
+    appId: "1:865694055211:web:defa9a4557178f8b60e36e"
+    measurementId: "G-9SRD40LVB4"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const form = document.getElementById("laporForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const kategori = document.getElementById("kategori").value;
+    const isi = document.getElementById("isilaporan").value;
+
+    try {
+      await addDoc(collection(db, "laporan"), {
+        kategori: kategori,
+        isi: isi,
+        tanggal: new Date()
+      });
+
+      alert("Laporan berhasil dikirim!");
+      form.reset();
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  });
+</script>
 <script src="script.js"></script>
 </body>
 </html>
