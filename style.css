@@ -369,7 +369,7 @@ textarea {
 .hidden {
   display: none;
 }
-section {
+#tentang, #panduan, #kirimlaporan {
   display: flex;
   flex-direction: column;   /* susun elemen ke bawah */
   justify-content: center;  /* vertikal tengah */
