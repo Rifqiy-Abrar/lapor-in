@@ -377,3 +377,5 @@ textarea {
   min-height: 100vh;        /* penuh tinggi layar */
   text-align: center;       /* teks rata tengah */
 }
+.hidden {
+  display: none;
