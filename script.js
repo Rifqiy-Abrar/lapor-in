@@ -53,12 +53,6 @@ document.getElementById("laporForm").addEventListener("submit", function(e) {
     isi: isi,
     tanggal: new Date().toLocaleString()
   };
-
-  // simpan ke localStorage
-  let dataLaporan = JSON.parse(localStorage.getItem("laporan")) || [];
-  dataLaporan.push(laporan);
-  localStorage.setItem("laporan", JSON.stringify(dataLaporan));
-
   // tampilkan konfirmasi
   document.getElementById("kirimLaporan").classList.add("hidden");
   document.getElementById("konfirmasi").classList.remove("hidden");
@@ -95,6 +89,3 @@ function showSection(id) {
     document.getElementById('menu').classList.add('hidden');
     target.classList.remove('hidden');
 }
-let dataLaporan = JSON.parse(localStorage.getItem("laporan")) || [];
-  dataLaporan.push(laporan);
-  localStorage.setItem("laporan", JSON.stringify(dataLaporan));
