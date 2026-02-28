@@ -1,73 +1,113 @@
 import { db, collection, addDoc, getDocs, query, orderBy }
 from "./firebase.js";
+
+///////////////////////////////
+// MASUK DARI HALAMAN AWAL
+///////////////////////////////
+
 window.masuk = function() {
   const welcome = document.getElementById("welcomeText");
   const menu = document.getElementById("menu");
+
   if (!welcome || !menu) return;
+
   welcome.classList.add("hidden-center");
   menu.classList.remove("hidden-center");
-}
-window.showsection = function(id) {
+};
+
+///////////////////////////////
+// PINDAH HALAMAN
+///////////////////////////////
+
+window.showSection = function(id) {
   document.querySelectorAll(".content-section").forEach(sec => {
     sec.classList.add("hidden-center");
   });
+
   document.getElementById("menu").classList.add("hidden-center");
+
   const target = document.getElementById(id);
   if (target) {
     target.classList.remove("hidden-center");
   }
+
   if (id === "adminPage") {
     loadLaporan();
   }
-}
-window.backmenu = function() {
+};
+
+///////////////////////////////
+// KEMBALI KE MENU
+///////////////////////////////
+
+window.backMenu = function() {
   document.querySelectorAll(".content-section").forEach(sec => {
     sec.classList.add("hidden-center");
   });
+
   document.getElementById("menu").classList.remove("hidden-center");
-}
+};
+
+///////////////////////////////
+// RELOAD KE HOME
+///////////////////////////////
+
 window.kembaliHome = function() {
   location.reload();
-}
+};
+
 ///////////////////////////////
-///// SUBMIT LAPORAN
+// SUBMIT LAPORAN
 ///////////////////////////////
 
 const form = document.getElementById("laporForm");
+
 if (form) {
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const kategori = document.getElementById("kategori").value;
-  const isi = document.getElementById("isilaporan").value;
-  await addDoc(collection(db, "laporan"), {
-    kategori,
-    isi,
-    tanggal: new Date()
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const kategori = document.getElementById("kategori").value;
+    const isi = document.getElementById("isilaporan").value;
+
+    await addDoc(collection(db, "laporan"), {
+      kategori,
+      isi,
+      tanggal: new Date()
+    });
+
+    alert("Laporan terkirim");
+    form.reset();
   });
-  alert("Laporan terkirim");
-  form.reset();
-});
 }
+
 ///////////////////////////////
-///// ADMIN LOAD DATA
+// ADMIN LOAD DATA
 ///////////////////////////////
 
 window.loadLaporan = async function() {
   const list = document.getElementById("adminList");
+
   if (!list) return;
+
   list.innerHTML = "Loading...";
+
   const q = query(
     collection(db, "laporan"),
     orderBy("tanggal", "desc")
   );
+
   const querySnapshot = await getDocs(q);
+
   list.innerHTML = "";
+
   if (querySnapshot.empty) {
     list.innerHTML = "<p>Belum ada laporan</p>";
     return;
   }
+
   querySnapshot.forEach((doc) => {
     const data = doc.data();
+
     list.innerHTML += `
       <div class="admin-card">
         <h4>${data.kategori}</h4>
@@ -78,4 +118,4 @@ window.loadLaporan = async function() {
       </div>
     `;
   });
-}
+};
