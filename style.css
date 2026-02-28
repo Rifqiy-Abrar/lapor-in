@@ -365,10 +365,6 @@ textarea {
 .btn-start:active {
   transform: scale(0.95); /* efek mengecil saat ditekan */
 }
-
-.hidden {
-  display: none;
-}
 #tentang, #panduan, #kirimlaporan {
   display: flex;
   flex-direction: column;   /* susun elemen ke bawah */
@@ -379,3 +375,4 @@ textarea {
 }
 .hidden {
   display: none;
+}
