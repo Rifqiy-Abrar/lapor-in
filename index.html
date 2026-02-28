@@ -126,72 +126,77 @@
 
 <!-- semua isi website kamu di sini -->
 
-<script>
-function masuk() {
-  document.getElementById("welcomeText").style.display = "none";
-  document.getElementById("menu").style.display = "block";
-}
-</script>
-    <script>
-function showSection(id) {
+<script type="module">
 
-    document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.add('hidden');
-    });
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
-    document.getElementById('menu').classList.add('hidden');
-    document.getElementById(id).classList.remove('hidden');
-}
+import { 
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-function showMenu() {
+const firebaseConfig = {
+  apiKey: "AIzaSyB-6HSzNSOtX6712oy5FLZeJapmMoznqSU",
+  authDomain: "lapor-in-177c1.firebaseapp.com",
+  projectId: "lapor-in-177c1",
+  storageBucket: "lapor-in-177c1.firebasestorage.app",
+  messagingSenderId: "865694055211",
+  appId: "1:865694055211:web:defa9a4557178f8b60e36e",
+  measurementId: "G-9SRD40LVB4"
+};
 
-    document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.add('hidden');
-    });
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const form = document.getElementById("laporForm");
 
-    document.getElementById('menu').classList.remove('hidden');
-}
-</script>
-    <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-  import { getDocs, collection, query, orderBy } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyB-6HSzNSOtX6712oy5FLZeJapmMoznqSU",
-    authDomain: "lapor-in-177c1.firebaseapp.com",
-    projectId: "lapor-in-177c1",
-    storageBucket: "lapor-in-177c1.firebasestorage.app",
-    messagingSenderId: "865694055211",
-    appId: "1:865694055211:web:defa9a4557178f8b60e36e",
-    measurementId: "G-9SRD40LVB4"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  const form = document.getElementById("laporForm");
-
+if (form) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const kategori = document.getElementById("kategori").value;
     const isi = document.getElementById("isilaporan").value;
-
     try {
       await addDoc(collection(db, "laporan"), {
-        kategori: kategori,
-        isi: isi,
+        kategori,
+        isi,
         tanggal: new Date()
       });
 
-      alert("Laporan berhasil dikirim!");
+      alert("Laporan berhasil dikirim");
       form.reset();
-    } catch (error) {
-      console.error("Error:", error);
+    } catch (err) {
+      console.error(err);
+      alert("Gagal kirim");
     }
   });
+}
+
+window.loadLaporan = async function () {
+  const list = document.getElementById("adminList");
+  if (!list) return;
+  list.innerHTML = "Loading...";
+  const q = query(
+    collection(db, "laporan"),
+    orderBy("tanggal", "desc")
+  );
+
+  const snap = await getDocs(q);
+  list.innerHTML = "";
+  snap.forEach(doc => {
+    const data = doc.data();
+    list.innerHTML += `
+      <div class="admin-card">
+        <h4>${data.kategori}</h4>
+        <p>${data.isi}</p>
+      </div>
+    `;
+  });
+};
+
 </script>
 </body>
 </html>
