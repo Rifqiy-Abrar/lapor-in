@@ -3,7 +3,7 @@ from "./firebase.js";
 function masuk() {
   const welcome = document.getElementById("welcomeText");
   const menu = document.getElementById("menu");
-
+  alert("Tombol diklik")
   if (!welcome || !menu) return;
 
   welcome.classList.add("hidden-center");
