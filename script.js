@@ -1,6 +1,6 @@
 import { db, collection, addDoc, getDocs, query, orderBy }
 from "./firebase.js";
-function masuk() {
+window.masuk = function() {
   const welcome = document.getElementById("welcomeText");
   const menu = document.getElementById("menu");
   alert("Tombol diklik")
