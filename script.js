@@ -52,7 +52,7 @@ form.addEventListener("submit", async (e) => {
 ///// ADMIN LOAD DATA
 ///////////////////////////////
 
-async function loadLaporan() {
+window.loadLaporan = async function() {
   const list = document.getElementById("adminList");
   if (!list) return;
   list.innerHTML = "Loading...";
