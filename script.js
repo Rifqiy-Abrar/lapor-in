@@ -22,6 +22,9 @@ function showSection(id) {
 
     // tampilkan yang dipilih
     document.getElementById(id).classList.remove('hidden-center');
+    if (id === "adminPage") {
+  loadLaporan();
+}
 }
 
 function showMenu() {
@@ -128,3 +131,29 @@ window.onload = () => {
   hideAll();
   document.getElementById("welcome").classList.remove("hidden");
 };
+async function loadLaporan() {
+  const list = document.getElementById("adminList");
+  list.innerHTML = "Loading...";
+
+  const q = query(collection(db, "laporan"), orderBy("tanggal", "desc"));
+  const querySnapshot = await getDocs(q);
+
+  list.innerHTML = "";
+
+  if (querySnapshot.empty) {
+    list.innerHTML = "<p>Belum ada laporan.</p>";
+    return;
+  }
+
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+
+    list.innerHTML += `
+      <div class="admin-card">
+        <h4>${data.kategori}</h4>
+        <p>${data.isi}</p>
+        <small>${new Date(data.tanggal.seconds * 1000).toLocaleString()}</small>
+      </div>
+    `;
+  });
+}
