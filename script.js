@@ -1,34 +1,26 @@
 import { db, collection, addDoc, getDocs, query, orderBy }
 from "./firebase.js";
 
-///////////////////////////////
-// MASUK DARI HALAMAN AWAL
-///////////////////////////////
-
-window.masuk = function() {
+window.masuk = function () {
   const welcome = document.getElementById("welcomeText");
   const menu = document.getElementById("menu");
 
   if (!welcome || !menu) return;
 
-  welcome.classList.add("hidden-center");
-  menu.classList.remove("hidden-center");
+  welcome.classList.add("hidden");
+  menu.classList.remove("hidden");
 };
 
-///////////////////////////////
-// PINDAH HALAMAN
-///////////////////////////////
-
-window.showSection = function(id) {
+window.showSection = function (id) {
   document.querySelectorAll(".content-section").forEach(sec => {
-    sec.classList.add("hidden-center");
+    sec.classList.add("hidden");
   });
 
-  document.getElementById("menu").classList.add("hidden-center");
+  document.getElementById("menu").classList.add("hidden");
 
   const target = document.getElementById(id);
   if (target) {
-    target.classList.remove("hidden-center");
+    target.classList.remove("hidden");
   }
 
   if (id === "adminPage") {
@@ -36,26 +28,17 @@ window.showSection = function(id) {
   }
 };
 
-///////////////////////////////
-// KEMBALI KE MENU
-///////////////////////////////
-
-window.backMenu = function() {
+window.showMenu = function () {
   document.querySelectorAll(".content-section").forEach(sec => {
-    sec.classList.add("hidden-center");
+    sec.classList.add("hidden");
   });
 
-  document.getElementById("menu").classList.remove("hidden-center");
+  document.getElementById("menu").classList.remove("hidden");
 };
 
-///////////////////////////////
-// RELOAD KE HOME
-///////////////////////////////
-
-window.kembaliHome = function() {
+window.kembaliHome = function () {
   location.reload();
 };
-
 ///////////////////////////////
 // SUBMIT LAPORAN
 ///////////////////////////////
