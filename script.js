@@ -1,3 +1,5 @@
+import { db, collection, addDoc, getDocs, query, orderBy }
+from "./firebase.js";
 function masuk() {
   const welcome = document.getElementById("welcomeText");
   const menu = document.getElementById("menu");
@@ -46,44 +48,24 @@ const form = document.getElementById("laporForm");
 
 if (form) {
 
-  form.addEventListener("submit", async function (e) {
+form.addEventListener("submit", async (e) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    const kategoriEl = document.getElementById("kategori");
-    const isiEl = document.getElementById("isilaporan");
+  const kategori = document.getElementById("kategori").value;
+  const isi = document.getElementById("isilaporan").value;
 
-    if (!kategoriEl || !isiEl) {
-      alert("Form tidak ditemukan");
-      return;
-    }
-
-    const kategori = kategoriEl.value;
-    const isi = isiEl.value;
-
-    try {
-
-      await addDoc(collection(db, "laporan"), {
-        kategori: kategori,
-        isi: isi,
-        tanggal: new Date()
-      });
-
-      alert("Laporan berhasil dikirim");
-
-      form.reset();
-
-      document.getElementById("kirimLaporan").classList.add("hidden-center");
-      document.getElementById("konfirmasi").classList.remove("hidden-center");
-
-    } catch (err) {
-
-      console.error(err);
-      alert("Gagal kirim laporan");
-
-    }
-
+  await addDoc(collection(db, "laporan"), {
+    kategori,
+    isi,
+    tanggal: new Date()
   });
+
+  alert("Laporan terkirim");
+
+  form.reset();
+
+});
 
 }
 ///////////////////////////////
