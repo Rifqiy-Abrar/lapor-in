@@ -1,159 +1,137 @@
 function masuk() {
-    const welcome = document.getElementById("welcomeText");
-    const menu = document.getElementById("menu");
+  const welcome = document.getElementById("welcomeText");
+  const menu = document.getElementById("menu");
 
-    if (!welcome || !menu) {
-        console.error("Element tidak ditemukan!");
-        return;
-    }
+  if (!welcome || !menu) return;
 
-    welcome.classList.add("hidden-center");
-    menu.classList.remove("hidden-center");
+  welcome.classList.add("hidden-center");
+  menu.classList.remove("hidden-center");
 }
 function showSection(id) {
 
-    // sembunyikan semua content
-    document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.add('hidden-center');
-    });
+  document.querySelectorAll(".content-section").forEach(sec => {
+    sec.classList.add("hidden-center");
+  });
 
-    // sembunyikan menu
-    document.getElementById('menu').classList.add('hidden-center');
+  document.getElementById("menu").classList.add("hidden-center");
 
-    // tampilkan yang dipilih
-    document.getElementById(id).classList.remove('hidden-center');
-    if (id === "adminPage") {
-  loadLaporan();
+  const target = document.getElementById(id);
+
+  if (target) {
+    target.classList.remove("hidden-center");
+  }
+
+  if (id === "adminPage") {
+    loadLaporan();
+  }
 }
-}
-
 function showMenu() {
 
-    // sembunyikan semua content
-    document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.add('hidden-center');
-    });
+  document.querySelectorAll(".content-section").forEach(sec => {
+    sec.classList.add("hidden-center");
+  });
 
-    // tampilkan menu kembali
-    document.getElementById('menu').classList.remove('hidden-center');
-}
-function backMenu() {
-   document.querySelectorAll("section").forEach(sec => {
-        sec.classList.add("hidden-center");
-    });
   document.getElementById("menu").classList.remove("hidden-center");
 }
+
 
 function kembaliHome() {
   location.reload();
 }
-document.getElementById("laporForm").addEventListener("submit", function(e) {
+///////////////////////////////
+///// SUBMIT LAPORAN
+///////////////////////////////
+
+const form = document.getElementById("laporForm");
+
+if (form) {
+
+  form.addEventListener("submit", async function (e) {
+
     e.preventDefault();
 
-    const kategori = document.getElementById("kategori").value;
-    const isi = document.getElementById("isilaporan").value;
+    const kategoriEl = document.getElementById("kategori");
+    const isiEl = document.getElementById("isilaporan");
 
-    console.log(kategori, isi);
-});
-
-  const kategori = document.getElementById("kategori").value;
-  const isi = document.getElementById("isilaporan").value;
-
-  const laporan = {
-    kategori: kategori,
-    isi: isi,
-    tanggal: new Date().toLocaleString()
-  };
-  // tampilkan konfirmasi
-  document.getElementById("kirimLaporan").classList.add("hidden-center");
-  document.getElementById("konfirmasi").classList.remove("hidden-center");
-
-  // reset form
-  this.reset();
-});
-const welcomeText = document.getElementById('welcomeText');
-const toggleBtn = document.getElementById('toggleBtn');
-
-window.onload = () => {
-  welcomeText.classList.add('show');
-};
-
-toggleBtn.addEventListener('click', () => {
-  welcomeText.classList.remove('show');
-  welcomeText.classList.add('hide');
-});
-function showSection(id) {
-    console.log("ID yang dipanggil:", id);
-
-    const target = document.getElementById(id);
-    console.log("Element ditemukan:", target);
-
-    if (!target) {
-        alert("Section tidak ditemukan!");
-        return;
+    if (!kategoriEl || !isiEl) {
+      alert("Form tidak ditemukan");
+      return;
     }
 
-    document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.add('hidden-center');
-    });
+    const kategori = kategoriEl.value;
+    const isi = isiEl.value;
 
-    document.getElementById('menu').classList.add('hidden-center');
-    target.classList.remove('hidden-center');
+    try {
+
+      await addDoc(collection(db, "laporan"), {
+        kategori: kategori,
+        isi: isi,
+        tanggal: new Date()
+      });
+
+      alert("Laporan berhasil dikirim");
+
+      form.reset();
+
+      document.getElementById("kirimLaporan").classList.add("hidden-center");
+      document.getElementById("konfirmasi").classList.remove("hidden-center");
+
+    } catch (err) {
+
+      console.error(err);
+      alert("Gagal kirim laporan");
+
+    }
+
+  });
+
 }
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+///////////////////////////////
+///// ADMIN LOAD DATA
+///////////////////////////////
 
-  const kategoriEl = document.getElementById("kategori");
-  const isiEl = document.getElementById("isilaporan");
-
-  if (!kategoriEl || !isiEl) {
-    alert("ID tidak ditemukan! Cek HTML.");
-    return;
-  }
-
-  const kategori = kategoriEl.value;
-  const isi = isiEl.value;
-
-  try {
-    await addDoc(collection(db, "laporan"), {
-      kategori,
-      isi,
-      tanggal: new Date()
-    });
-
-    alert("Laporan berhasil dikirim!");
-    form.reset();
-  } catch (error) {
-    console.error(error);
-  }
-});
-window.onload = () => {
-  hideAll();
-  document.getElementById("welcome").classList.remove("hidden");
-};
 async function loadLaporan() {
+
   const list = document.getElementById("adminList");
+
+  if (!list) return;
+
   list.innerHTML = "Loading...";
 
-  const q = query(collection(db, "laporan"), orderBy("tanggal", "desc"));
+  const q = query(
+    collection(db, "laporan"),
+    orderBy("tanggal", "desc")
+  );
+
   const querySnapshot = await getDocs(q);
 
   list.innerHTML = "";
 
   if (querySnapshot.empty) {
-    list.innerHTML = "<p>Belum ada laporan.</p>";
+    list.innerHTML = "<p>Belum ada laporan</p>";
     return;
   }
 
   querySnapshot.forEach((doc) => {
+
     const data = doc.data();
 
     list.innerHTML += `
+
       <div class="admin-card">
+
         <h4>${data.kategori}</h4>
+
         <p>${data.isi}</p>
-        <small>${new Date(data.tanggal.seconds * 1000).toLocaleString()}</small>
+
+        <small>
+          ${new Date(data.tanggal.seconds * 1000).toLocaleString()}
+        </small>
+
       </div>
+
     `;
+
   });
+
 }
