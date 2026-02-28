@@ -35,7 +35,9 @@ function showMenu() {
     document.getElementById('menu').classList.remove('hidden-center');
 }
 function backMenu() {
-  document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden-center"));
+   document.querySelectorAll("section").forEach(sec => {
+        sec.classList.add("hidden-center");
+    });
   document.getElementById("menu").classList.remove("hidden-center");
 }
 
@@ -43,7 +45,13 @@ function kembaliHome() {
   location.reload();
 }
 document.getElementById("laporForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+    e.preventDefault();
+
+    const kategori = document.getElementById("kategori").value;
+    const isi = document.getElementById("isilaporan").value;
+
+    console.log(kategori, isi);
+});
 
   const kategori = document.getElementById("kategori").value;
   const isi = document.getElementById("isilaporan").value;
@@ -116,3 +124,7 @@ form.addEventListener("submit", async (e) => {
     console.error(error);
   }
 });
+window.onload = () => {
+  hideAll();
+  document.getElementById("welcome").classList.remove("hidden");
+};
