@@ -38,6 +38,16 @@ window.showMenu = function () {
 
 window.kembaliHome = function () {
   location.reload();
+};                    
+
+window.bukaAdmin = function () {
+  const pass = prompt("Masukkan password admin");
+
+  if (pass === "admin123") {
+    window.location.href = "admin.html";
+  } else {
+    alert("Password salah");
+  }
 };
 ///////////////////////////////
 // SUBMIT LAPORAN
