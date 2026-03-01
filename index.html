@@ -49,11 +49,10 @@
       <h3>Kirim Laporan</h3>
       <p>Sampaikan laporan secara anonim.</p>
     </div>
-    <div class="card" onclick="showSection('adminPage')">
+    <div class="card" onclick="window.location.href='admin.html'">
   <h3>Admin</h3>
-  <p>Lihat semua laporan</p>
+  <p>Login admin</p>
 </div>
-  </div>
 </section>
 
 <!-- TENTANG -->
@@ -111,16 +110,6 @@
   <h2>Laporan Anda Telah Kami Terima</h2>
   <p>Terima kasih atas partisipasi Anda.</p>
   <button onclick="kembaliHome()">Kembali ke Beranda</button>
-</section>
-<!-- section admin -->
-  <section id="adminPage" class="content-section hidden">
-  <div class="admin-wrapper">
-    <h2>Dashboard Admin</h2>
-
-    <div id="adminList"></div>
-
-    <button type="button" onclick="showMenu()">Kembali</button>
-  </div>
 </section>
 <!-- semua isi website kamu di sini -->
     <script type="module" src="script.js"></script>
