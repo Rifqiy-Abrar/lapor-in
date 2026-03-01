@@ -1,10 +1,8 @@
-
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background-color: #f4f8fc !important;
 }
-
 
 section {
   padding: 50px 20px;
@@ -373,19 +371,36 @@ textarea {
   min-height: 100vh;        /* penuh tinggi layar */
   text-align: center;       /* teks rata tengah */
 }
-.admin-wrapper {
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  background: #0B2A4A;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  box-sizing: border-box;
 }
-.admin-card {
+
+.topbar-left {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.topbar-right button {
   background: white;
-  padding: 20px;
-  margin-bottom: 15px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-  text-align: left;
+  color: #0B2A4A;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
 }
+    
 .hidden {
   display: none;
 }
