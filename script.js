@@ -1,38 +1,53 @@
+
 import { db, collection, addDoc, getDocs, query, orderBy }
 from "./firebase.js";
 
+window.masuk = function () {
+  const welcome = document.getElementById("welcomeText");
+  const menu = document.getElementById("menu");
+
+  if (!welcome || !menu) return;
+
+  welcome.classList.add("hidden");
+  menu.classList.remove("hidden");
+
+  document.getElementById("welcomeText").classList.add("hidden");
+  document.getElementById("menu").classList.remove("hidden");
+
+  showSection("menu");
+
+  // tampilkan navbar
+  document.getElementById("navbar").classList.remove("hidden");
+};
+
 window.showSection = function (id) {
-  document.querySelectorAll(".content-section").forEach(section => {
-    section.classList.add("hidden");
+  document.querySelectorAll(".content-section").forEach(sec => {
+    sec.classList.add("hidden");
   });
+
+  document.getElementById("menu").classList.add("hidden");
 
   const target = document.getElementById(id);
   if (target) {
     target.classList.remove("hidden");
   }
-}
 
-window.masuk = function() {
-  showSection("menu");
-
-  const navbar = document.getElementById("navbar");
-  if (navbar) {
-    navbar.classList.remove("hidden");
+  if (id === "adminPage") {
+    loadLaporan();
   }
-}
+  window.showSection = showSection;
+  window.showMenu = showMenu;
+  window.masuk = masuk;
+};
 
-function showMenu() {
-  showSection("menu");
-}
+window.showMenu = function () {
+  document.querySelectorAll(".content-section").forEach(sec => {
+    sec.classList.add("hidden");
+  });
 
-// expose ke global karena pakai module + onclick
-window.showSection = showSection;
-window.showMenu = showMenu;
-window.masuk = masuk;
+  document.getElementById("menu").classList.remove("hidden");
+};
 
-window.addEventListener("DOMContentLoaded", () => {
-  showSection("welcomeText");
-});
 window.kembaliHome = function () {
   location.reload();
 };                    
