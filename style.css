@@ -405,6 +405,9 @@ textarea {
 .topbar-admin:hover {
   background: #e6f7ff;
 }
+.topbar {
+  transition: opacity 0.3s ease;
+}
 .hidden {
   display: none;
 }
