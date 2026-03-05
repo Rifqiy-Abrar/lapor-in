@@ -9,6 +9,12 @@ window.masuk = function () {
 
   welcome.classList.add("hidden");
   menu.classList.remove("hidden");
+
+  document.getElementById("welcomeText").classList.add("hidden");
+  document.getElementById("menu").classList.remove("hidden");
+
+  // tampilkan navbar
+  document.getElementById("navbar").classList.remove("hidden");
 };
 
 window.showSection = function (id) {
