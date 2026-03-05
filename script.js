@@ -80,7 +80,7 @@ if (form) {
 
     // Kirim ke Firebase
     await addDoc(collection(db, "laporan"), {
-      judul,      // judul laporan
+      judul: judul || "Tidak ada judul",      // judul laporan
       kategori,
       isi,
       tanggal: new Date()
