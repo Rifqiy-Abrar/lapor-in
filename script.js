@@ -2,8 +2,8 @@ import { db, collection, addDoc, getDocs, query, orderBy }
 from "./firebase.js";
 
 function showSection(id) {
-  document.querySelectorAll(".content-section").forEach(sec => {
-    sec.classList.add("hidden");
+  document.querySelectorAll(".content-section").forEach(section => {
+    section.classList.add("hidden");
   });
 
   const target = document.getElementById(id);
@@ -15,7 +15,6 @@ function showSection(id) {
 function masuk() {
   showSection("menu");
 
-  // tampilkan navbar
   const navbar = document.getElementById("navbar");
   if (navbar) {
     navbar.classList.remove("hidden");
@@ -25,7 +24,8 @@ function masuk() {
 function showMenu() {
   showSection("menu");
 }
-// expose ke global karena kamu pakai module
+
+// expose ke global karena pakai module + onclick
 window.showSection = showSection;
 window.showMenu = showMenu;
 window.masuk = masuk;
