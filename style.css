@@ -327,3 +327,7 @@ body {
 .topbar {
   background: red !important;
 }
+
+.hidden {
+  display: none;
+}
