@@ -13,6 +13,8 @@ window.masuk = function () {
   document.getElementById("welcomeText").classList.add("hidden");
   document.getElementById("menu").classList.remove("hidden");
 
+  showSection("menu");
+
   // tampilkan navbar
   document.getElementById("navbar").classList.remove("hidden");
 };
@@ -34,6 +36,7 @@ window.showSection = function (id) {
   }
   window.showSection = showSection;
   window.showMenu = showMenu;
+  window.masuk = masuk;
 };
 
 window.showMenu = function () {
