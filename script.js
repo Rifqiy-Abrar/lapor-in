@@ -64,9 +64,6 @@ window.bukaAdmin = function () {
 ///////////////////////////////
 // SUBMIT LAPORAN
 ///////////////////////////////
-
-import { db, collection, addDoc } from "./firebase.js";
-
 // Ambil form
 const form = document.getElementById("laporForm");
 
