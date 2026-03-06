@@ -78,13 +78,15 @@ if (form) {
     e.preventDefault();
 
     const kategori = document.getElementById("kategori").value;
+    const judul =  document.getElementById("judul").value;
     const isi = document.getElementById("isilaporan").value;
 
     await addDoc(collection(db, "laporan"), {
-      kategori: kategori,
-      isi: isi,
-      tanggal: new Date()
-    });
+  kategori: kategori,
+  judul: judul,
+  isi: isi,
+  tanggal: new Date()
+});
 
     alert("Laporan berhasil dikirim!");
 
@@ -123,11 +125,12 @@ window.loadLaporan = async function () {
 
     const data = doc.data();
 
-    list.innerHTML += `
-      <div class="admin-card">
-        <h4>${data.kategori}</h4>
-        <p>${data.isi}</p>
-      </div>
+   list.innerHTML += `
+  <div class="admin-card">
+    <h4>${data.judul}</h4>
+    <small>${data.kategori}</small>
+    <p>${data.isi}</p>
+  </div>
     `;
   })
 };
