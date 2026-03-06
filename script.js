@@ -87,6 +87,26 @@ if (form) {
     form.reset();
   });
 }
+
+document.getElementById("laporForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const kategori = document.getElementById("kategori").value;
+  const isi = document.getElementById("isilaporan").value;
+
+  const idLaporan = "SWK-" + Math.floor(Math.random() * 100000);
+
+  await addDoc(collection(db, "laporan"), {
+    id: idLaporan,
+    kategori: kategori,
+    isi: isi,
+    status: "Diterima"
+  });
+
+  alert("Laporan berhasil dikirim!\nID laporan kamu: " + idLaporan);
+
+  showSection("konfirmasi");
+});
 ///////////////////////////////
 // ADMIN LOAD DATA
 ///////////////////////////////
@@ -127,33 +147,22 @@ window.loadLaporan = async function() {
   });
 };
 
-function generateID(){
-  return "SWK-" + Math.floor(Math.random()*100000);
-}
-const idLaporan = generateID();
+window.cekStatus = async function () {
+  const id = document.getElementById("trackingId").value;
+  const q = query(collection(db, "laporan"));
+  const snapshot = await getDocs(q);
+  let ditemukan = false;
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+    if (data.id === id) {
+      ditemukan = true;
+      document.getElementById("hasilTracking").innerHTML =
+        "<p>Status laporan: <strong>" + data.status + "</strong></p>";
+    }
+  });
 
-window.cekStatus = async function(){
-
-const id = document.getElementById("trackingId").value;
-
-const q = query(collection(db,"laporan"));
-const snapshot = await getDocs(q);
-
-let ditemukan = false;
-
-snapshot.forEach(doc=>{
-  const data = doc.data();
-
-  if(data.id === id){
-    document.getElementById("statusHasil").innerText =
-    "Status laporan: " + data.status;
-    ditemukan = true;
+  if (!ditemukan) {
+    document.getElementById("hasilTracking").innerHTML =
+      "<p>ID laporan tidak ditemukan.</p>";
   }
-});
-
-if(!ditemukan){
-  document.getElementById("statusHasil").innerText =
-  "ID laporan tidak ditemukan";
-}
-
-}
+};
