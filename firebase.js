@@ -27,3 +27,10 @@ const db = getFirestore(app);
 
 
 export { db, collection, addDoc, getDocs, query, orderBy };
+
+addDoc(collection(db,"laporan"),{
+  id:idLaporan,
+  kategori:kategori,
+  isi:isilaporan,
+  status:"Diproses"
+});
