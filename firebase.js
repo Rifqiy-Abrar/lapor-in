@@ -31,6 +31,7 @@ export { db, collection, addDoc, getDocs, query, orderBy };
 addDoc(collection(db,"laporan"),{
   id:idLaporan,
   kategori:kategori,
+  judul:judul,
   isi:isilaporan,
   status:"Diproses"
 });
