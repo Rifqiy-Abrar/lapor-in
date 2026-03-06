@@ -1,4 +1,3 @@
-
 import { db, collection, addDoc, getDocs, query, orderBy }
 from "./firebase.js";
 
@@ -23,6 +22,8 @@ window.showSection = function (id) {
     sec.classList.add("hidden");
   });
 
+  document.getElementById("menu").classList.add("hidden");
+
   const target = document.getElementById(id);
   if (target) {
     target.classList.remove("hidden");
@@ -31,6 +32,9 @@ window.showSection = function (id) {
   if (id === "adminPage") {
     loadLaporan();
   }
+  window.showSection = showSection;
+  window.showMenu = showMenu;
+  window.masuk = masuk;
 };
 
 window.showMenu = function () {
@@ -57,27 +61,29 @@ window.bukaAdmin = function () {
 ///////////////////////////////
 // SUBMIT LAPORAN
 ///////////////////////////////
-document.getElementById("laporForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+// Ambil form
+const form = document.getElementById("laporForm");
 
-  const kategori = document.getElementById("kategori").value;
-  const judul = document.getElementById("judulLaporan").value;
-  const isi = document.getElementById("isilaporan").value;
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const idLaporan = "SWK-" + Math.floor(Math.random() * 100000);
+    const judul = document.getElementById("judulLaporan").value;
+    const kategori = document.getElementById("kategori").value;
+    const isi = document.getElementById("isilaporan").value;
 
-  await addDoc(collection(db, "laporan"), {
-    id: idLaporan,
-    kategori: kategori,
-    judul: judul;
-    isi: isi,
-    status: "Diterima"
+    // Kirim ke Firebase
+    await addDoc(collection(db, "laporan"), {
+      judul: judul || "Tidak ada judul",      // judul laporan
+      kategori,
+      isi,
+      tanggal: new Date()
+    });
+
+    alert("Laporan terkirim!");
+    form.reset();
   });
-
-  alert("Laporan berhasil dikirim!\nID laporan kamu: " + idLaporan);
-
-  showSection("konfirmasi");
-});
+}
 ///////////////////////////////
 // ADMIN LOAD DATA
 ///////////////////////////////
@@ -116,24 +122,4 @@ window.loadLaporan = async function() {
       </div>
     `;
   });
-};
-
-window.cekStatus = async function () {
-  const id = document.getElementById("trackingId").value;
-  const q = query(collection(db, "laporan"));
-  const snapshot = await getDocs(q);
-  let ditemukan = false;
-  snapshot.forEach((doc) => {
-    const data = doc.data();
-    if (data.id === id) {
-      ditemukan = true;
-      document.getElementById("hasilTracking").innerHTML =
-        "<p>Status laporan: <strong>" + data.status + "</strong></p>";
-    }
-  });
-
-  if (!ditemukan) {
-    document.getElementById("hasilTracking").innerHTML =
-      "<p>ID laporan tidak ditemukan.</p>";
-  }
 };
