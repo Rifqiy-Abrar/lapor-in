@@ -81,10 +81,13 @@ if (form) {
     const judul =  document.getElementById("judul").value;
     const isi = document.getElementById("isilaporan").value;
 
-    await addDoc(collection(db, "laporan"), {
+    const judul = document.getElementById("judulLaporan").value;
+
+await addDoc(collection(db, "laporan"), {
   kategori: kategori,
   judul: judul,
   isi: isi,
+  status: "Diproses",
   tanggal: new Date()
 });
 
@@ -133,4 +136,36 @@ window.loadLaporan = async function () {
   </div>
     `;
   })
+};
+
+window.cekTracking = async function () {
+
+  const judul = document.getElementById("cariJudul").value;
+  const hasil = document.getElementById("hasilTracking");
+
+  hasil.innerHTML = "Mencari...";
+
+  const q = query(
+    collection(db, "laporan"),
+    orderBy("tanggal", "desc")
+  );
+
+  const snapshot = await getDocs(q);
+  let ditemukan = false;
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+    if (data.judul && data.judul.toLowerCase() === judul.toLowerCase()) {
+
+      hasil.innerHTML = `
+        <p><strong>Judul:</strong> ${data.judul}</p>
+        <p><strong>Status:</strong> ${data.status}</p>
+      `;
+
+      ditemukan = true;
+    }
+  });
+
+  if (!ditemukan) {
+    hasil.innerHTML = "Laporan tidak ditemukan.";
+  }
 };
