@@ -1,4 +1,4 @@
-import { db, collection, addDoc, getDocs, query, orderBy } from "./firebase.js";
+jimport { db, collection, addDoc, getDocs, query, orderBy } from "./firebase.js";
 
 ///////////////////////////////
 // MASUK DARI WELCOME
@@ -78,10 +78,10 @@ if (form) {
     e.preventDefault();
 
     const kategori = document.getElementById("kategori").value;
-    const judul =  document.getElementById("judul").value;
+    const judul = document.getElementById("judulLaporan").value;
     const isi = document.getElementById("isilaporan").value;
 
-    const judul = document.getElementById("judulLaporan").value;
+    
 
 await addDoc(collection(db, "laporan"), {
   kategori: kategori,
