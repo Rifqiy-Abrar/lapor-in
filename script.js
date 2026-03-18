@@ -1,3 +1,4 @@
+console.log("SCRIPT JALAN")
 import { db, collection, addDoc, getDocs, query, orderBy } from "./firebase.js";
 
 ///////////////////////////////
@@ -83,18 +84,19 @@ if (form) {
     const kategori = document.getElementById("kategori").value;
     const judul = document.getElementById("judulLaporan").value;
     const isi = document.getElementById("isiLaporan").value;
-
     
+    const kode = "SWK-" + Math.floor(1000 + Math.random() * 9000);
 
 await addDoc(collection(db, "laporan"), {
+  kode: kode,
   kategori: kategori,
   judul: judul,
   isi: isi,
   status: "Diproses",
   tanggal: new Date()
 });
-
-    alert("Laporan berhasil dikirim!");
+    
+    alert("Laporan berhasil dikirim!\nKode Tracking: " + kode);
 
     form.reset();
 
@@ -143,8 +145,13 @@ window.loadLaporan = async function () {
 
 window.cekTracking = async function () {
 
-  const judul = document.getElementById("cariJudul").value;
+  const kode = document.getElementById("cariKode").value;
   const hasil = document.getElementById("hasilTracking");
+
+  if (!kode) {
+    hasil.innerHTML = "Masukkan kode terlebih dahulu!";
+    return;
+  }
 
   hasil.innerHTML = "Mencari...";
 
@@ -155,11 +162,14 @@ window.cekTracking = async function () {
 
   const snapshot = await getDocs(q);
   let ditemukan = false;
+
   snapshot.forEach((doc) => {
     const data = doc.data();
-    if (data.judul && data.judul.toLowerCase() === judul.toLowerCase()) {
+
+    if (data.kode && data.kode === kode.trim()) {
 
       hasil.innerHTML = `
+        <p><strong>Kode:</strong> ${data.kode}</p>
         <p><strong>Judul:</strong> ${data.judul}</p>
         <p><strong>Status:</strong> ${data.status}</p>
       `;
@@ -169,6 +179,6 @@ window.cekTracking = async function () {
   });
 
   if (!ditemukan) {
-    hasil.innerHTML = "Laporan tidak ditemukan.";
+    hasil.innerHTML = "Kode tidak ditemukan.";
   }
 };
