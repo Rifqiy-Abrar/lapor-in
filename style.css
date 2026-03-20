@@ -230,7 +230,7 @@ form {
 
 /* Pastikan .content-section tidak display flex by default */
 .content-section {
-  display: none;
+  display: flex;
   min-height: 100vh;
   background-color: #f4f8fc;
   padding: 20px;
@@ -346,5 +346,5 @@ padding-top:80px;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
